@@ -1,0 +1,9 @@
+project: Verylostpenguin/rav1e
+target: rav1e
+duration: 90
+
+cmds:
+  - cmd: /rav1e/fuzz/target/x86_64-unknown-linux-gnu/release/encode_decode
+  - cmd: /rav1e/fuzz/target/x86_64-unknown-linux-gnu/release/encode_decode_hbd
+  - cmd: /rav1e/fuzz/target/x86_64-unknown-linux-gnu/release/encode
+  - cmd: /rav1e/fuzz/target/x86_64-unknown-linux-gnu/release/construct_context
