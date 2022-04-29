@@ -1,0 +1,5 @@
+project: rav1e
+target: construct_context
+
+cmds:
+  - cmd: /rav1e/fuzz/target/x86_64-unknown-linux-gnu/release/construct_context

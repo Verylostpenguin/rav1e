@@ -7,6 +7,10 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  ENCODE_MAYHEMFILE: encode.mayhemfile
+  ENCODE_DECODE_MAYHEMFILE: encode_decode.mayhemfile
+  ENCODE_DECODE_HBD_MAYHEMFILE: encode_decode_hbd.mayhemfile
+  CONSTRUCT_CONTEXT_MAYHEMFILE: construct_context.mayhemfile
 
 jobs:
   build:
@@ -45,11 +49,36 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Start analysis
+      - name: Start analysis for encode
         uses: ForAllSecure/mcode-action@v1
         with:
           mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
           args: --image ${{ steps.meta.outputs.tags }}
+                --file ${{ env.ENCODE_MAYHEMFILE }}
+          sarif-output: sarif
+
+      - name: Start analysis for encode_decode
+        uses: ForAllSecure/mcode-action@v1
+        with:
+          mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
+          args: --image ${{ steps.meta.outputs.tags }}
+                --file ${{ env.ENCODE_DECODE_MAYHEMFILE }}
+          sarif-output: sarif
+
+      - name: Start analysis for encode_decode_hbd
+        uses: ForAllSecure/mcode-action@v1
+        with:
+          mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
+          args: --image ${{ steps.meta.outputs.tags }}
+                --file ${{ env.ENCODE_DECODE_HBD_MAYHEMFILE }}
+          sarif-output: sarif
+
+      - name: Start analysis for construct_context
+        uses: ForAllSecure/mcode-action@v1
+        with:
+          mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
+          args: --image ${{ steps.meta.outputs.tags }}
+                --file ${{ env.CONSTRUCT_CONTEXT_MAYHEMFILE }}
           sarif-output: sarif
 
       - name: Upload SARIF file(s)
