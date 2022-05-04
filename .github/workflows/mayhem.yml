@@ -55,7 +55,7 @@ jobs:
         with:
           mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
           args: --image ${{ steps.meta.outputs.tags }}
-                --file ${{ env.ENCODE_MAYHEMFILE }}
+                --file mayhemfiles/${{ env.ENCODE_MAYHEMFILE }}
           sarif-output: sarif
 
       - name: Start analysis for encode_decode
@@ -63,7 +63,7 @@ jobs:
         with:
           mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
           args: --image ${{ steps.meta.outputs.tags }}
-                --file ${{ env.ENCODE_DECODE_MAYHEMFILE }}
+                --file mayhemfiles/${{ env.ENCODE_DECODE_MAYHEMFILE }}
           sarif-output: sarif
 
       - name: Start analysis for encode_decode_hbd
@@ -71,7 +71,7 @@ jobs:
         with:
           mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
           args: --image ${{ steps.meta.outputs.tags }}
-                --file ${{ env.ENCODE_DECODE_HBD_MAYHEMFILE }}
+                --file mayhemfiles/${{ env.ENCODE_DECODE_HBD_MAYHEMFILE }}
           sarif-output: sarif
 
       - name: Start analysis for construct_context
@@ -79,7 +79,7 @@ jobs:
         with:
           mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
           args: --image ${{ steps.meta.outputs.tags }}
-                --file ${{ env.CONSTRUCT_CONTEXT_MAYHEMFILE }}
+                --file mayhemfiles/${{ env.CONSTRUCT_CONTEXT_MAYHEMFILE }}
           sarif-output: sarif
 
       - name: Upload SARIF file(s)
